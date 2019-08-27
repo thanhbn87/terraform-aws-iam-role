@@ -7,7 +7,7 @@
             "Action": [
                 "ec2:Describe*"
             ],
-            "Resource": "*"
+            "Resource": ${resources}
         }
     ]
 }
