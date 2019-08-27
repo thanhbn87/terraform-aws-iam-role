@@ -19,6 +19,9 @@ data "template_file" "assume_role" {
 data "template_file" "inline" {
   count    = "${var.inline_policy ? 1 : 0}"
   template = "${file(local.temp_file_policy)}"
+  vars {
+    resources = "${jsonencode(var.resources)}"
+  }
 }
 
 resource "aws_iam_role" "this" {
