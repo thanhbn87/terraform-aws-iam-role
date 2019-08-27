@@ -36,13 +36,13 @@ resource "aws_iam_role_policy_attachment" "aws" {
 resource "aws_iam_role_policy_attachment" "service_roles" {
   count      = "${length(var.service_roles)}"
   role       = "${aws_iam_role.this.name}"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/${element(var.aws_policies,count.index)}"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/${element(var.service_roles,count.index)}"
 }
 
 resource "aws_iam_role_policy_attachment" "aws_service_roles" {
   count      = "${length(var.aws_service_roles)}"
   role       = "${aws_iam_role.this.name}"
-  policy_arn = "arn:aws:iam::aws:policy/aws-service-role/${element(var.aws_policies,count.index)}"
+  policy_arn = "arn:aws:iam::aws:policy/aws-service-role/${element(var.aws_service_roles,count.index)}"
 }
 
 resource "aws_iam_role_policy" "inline" {
