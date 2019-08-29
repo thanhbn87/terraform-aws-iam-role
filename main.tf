@@ -50,13 +50,13 @@ resource "aws_iam_role_policy_attachment" "aws_service_roles" {
 
 resource "aws_iam_role_policy" "inline" {
   count  = "${var.inline_policy ? 1 : 0}"
-  name   = "${local.name}"
+  name   = "${var.inline_policy_name == "" ? local.name : var.inline_policy_name}"
   role   = "${aws_iam_role.this.id}"
   policy = "${data.template_file.inline.rendered}"
 }
 
 resource "aws_iam_instance_profile" "ec2" {
   count = "${contains(var.identifiers, "ec2.amazonaws.com") ? 1 : 0}"
-  name  = "${var.inline_policy_name == "" ? local.name : var.inline_policy_name}"
+  name  = "${local.name}"
   role  = "${aws_iam_role.this.name}"
 }
