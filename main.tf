@@ -57,6 +57,6 @@ resource "aws_iam_role_policy" "inline" {
 
 resource "aws_iam_instance_profile" "ec2" {
   count = "${contains(var.identifiers, "ec2.amazonaws.com") ? 1 : 0}"
-  name  = "${local.name}"
+  name  = "${var.inline_policy_name == "" ? local.name : var.inline_policy_name}"
   role  = "${aws_iam_role.this.name}"
 }
