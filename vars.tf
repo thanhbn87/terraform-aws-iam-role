@@ -1,6 +1,7 @@
 #
 # Variables
 #
+variable "enabled" { default = true }
 variable "namespace" { default = "" }
 variable "name" { default = "role" }
 variable "project_env" { default = "Production" }

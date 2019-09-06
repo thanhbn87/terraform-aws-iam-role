@@ -5,15 +5,15 @@ output "iam_instance_profile" {
 
 output "name" {
   description = "The iam role name"
-  value       = "${aws_iam_role.this.name}"
+  value       = "${element(concat(aws_iam_role.this.*.name,list("")),0)}"
 }
 
 output "arn" {
   description = "The iam role arn"
-  value       = "${aws_iam_role.this.arn}"
+  value       = "${element(concat(aws_iam_role.this.*.arn,list("")),0)}"
 }
 
 output "id" {
   description = "The iam role id"
-  value       = "${aws_iam_role.this.id}"
+  value       = "${element(concat(aws_iam_role.this.*.id,list("")),0)}"
 }
