@@ -30,6 +30,7 @@ resource "aws_iam_role" "this" {
   count = "${var.enabled ? 1 : 0}"
   name  = "${local.name}"
   tags  = "${merge(var.tags, local.common_tags)}"
+  description        = "${var.description}"
   assume_role_policy = "${data.template_file.assume_role.rendered}"
 }
 
