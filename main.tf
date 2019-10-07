@@ -6,7 +6,8 @@ locals {
 
   temp_file_assumerole = "${var.temp_file_assumerole == "" ? "AssumeRoleService.json.tpl" : var.temp_file_assumerole }"
   temp_file_policy     = "${var.temp_file_policy == "" ? "Policy.json.tpl" : var.temp_file_policy }"
-  name                 = "${var.namespace == "" ? "" : "${lower(var.namespace)}-"}${lower(var.project_env_short)}-${lower(var.name)}"
+  common_name          = "${var.namespace == "" ? "" : "${lower(var.namespace)}-"}${lower(var.project_env_short)}-${lower(var.name)}"
+  name                 = "${var.customized_name == "" ? local.common_name : var.customized_name}" 
 }
 
 data "template_file" "assume_role" {
