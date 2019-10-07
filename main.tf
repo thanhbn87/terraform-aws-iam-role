@@ -4,8 +4,8 @@ locals {
     Namespace = "${var.namespace}"
   }
 
-  temp_file_assumerole = "${var.temp_file_assumerole == "" ? "AssumeRoleService.json.tpl" : var.temp_file_assumerole }"
-  temp_file_policy     = "${var.temp_file_policy == "" ? "Policy.json.tpl" : var.temp_file_policy }"
+  temp_file_assumerole = "${var.temp_file_assumerole == "" ? "${path.module}/AssumeRoleService.json.tpl" : var.temp_file_assumerole }"
+  temp_file_policy     = "${var.temp_file_policy == "" ? "${path.module}/Policy.json.tpl" : var.temp_file_policy }"
   common_name          = "${var.namespace == "" ? "" : "${lower(var.namespace)}-"}${lower(var.project_env_short)}-${lower(var.name)}"
   name                 = "${var.customized_name == "" ? local.common_name : var.customized_name}" 
 }
