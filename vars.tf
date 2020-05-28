@@ -18,6 +18,7 @@ variable "service_roles" { default = [] }
 variable "aws_service_roles" { default = [] }
 variable "inline_policy" { default = true }
 variable "inline_policy_name" { default = "" }
+variable "path" { default = "/" }
 
 variable tags {
   default = {}
